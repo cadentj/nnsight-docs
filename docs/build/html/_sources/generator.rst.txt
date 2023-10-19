@@ -1,11 +1,6 @@
 Generator
 =========
 
-Now calling .generate(...) does not actually initialize or run the model. Only after the with 
-generator block is exited, is the acually model loaded and ran. 
-All operations in the block are "proxies" which essentially 
-creates a graph of operations we wish to carry out later.
-
 Generate Context
 ----------------
 

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Searching for Induction Heads &#8212; nnsight 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_charts/charts.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script src="_static/sphinx_charts/plotly/plotly-2.11.1.min.js"></script>
+    <script src="_static/sphinx_charts/charts.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Patching" href="patching.html" />
+    <link rel="prev" title="Basics" href="basics.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="searching-for-induction-heads">
+<h1>Searching for Induction Heads<a class="headerlink" href="#searching-for-induction-heads" title="Permalink to this heading">¶</a></h1>
+<p>Let’s look for <a class="reference external" href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">induction heads</a> in GPT-2 Small.</p>
+<p>Induction circuits are a very important circuit in generative language models, which are used to detect and continue repeated subsequences. They consist of two heads in separate layers that compose together, a <strong>previous token head</strong> which always attends to the previous token, and an <strong>induction head</strong> which attends to the token <em>after</em> an earlier copy of the current token.</p>
+<p>To see why this is important, let’s say that the model is trying to predict the next token in a news article about Michael Jordan. The token “ Michael”, in general, could be followed by many surnames. But an induction head will look from that occurence of “ Michael” to the token after previous occurences of “ Michael”, ie “ Jordan” and can confidently predict that that will come next.</p>
+<p>An interesting fact about induction heads is that they generalise to arbitrary sequences of repeated tokens. We can see this by generating sequences of 50 random tokens, repeated twice, and plotting the average loss at predicting the next token, by position. We see that the model goes from terrible to very good at the halfway point.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">seq_len</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">random_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">))</span>
+<span class="n">repeated_tokens</span> <span class="o">=</span> <span class="n">einops</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">random_tokens</span><span class="p">,</span> <span class="s2">&quot;batch seq_len -&gt; batch (2 seq_len)&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">repeated_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">token_ids</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">ids</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">token_ids</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">avg_token</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">line</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">xaxis</span><span class="o">=</span><span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="n">yaxis</span><span class="o">=</span><span class="s2">&quot;Loss&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Loss by position on random repeated tokens&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphinx-charts docutils container" id="id1">
+<div class="sphinx-charts-chart sphinx-charts-chart-id-0 sphinx-charts-chart-uri-_charts/line.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-0">
+</div>
+<p class="sphinx-charts-hidden"></p>
+<div class="sphinx-charts-placeholder sphinx-charts-placeholder-0 docutils container" id="id2">
+<p><span class="caption-text">Loading…</span></p>
+</div>
+<p><span class="caption-text">Loss by position on random repeated tokens</span></p>
+</div>
+<p>The induction heads will be attending from the second occurence of each token to the token <em>after</em> its first occurence, ie the token <cite>50-1==49</cite> places back. So by looking at the average attention paid 49 tokens back, we can identify induction heads!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">repeated_tokens</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">attn_hidden_states</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="k">for</span> <span class="n">layer_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">))]</span>
+
+<span class="n">attn_hidden_states</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">hs</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">hs</span> <span class="ow">in</span> <span class="n">attn_hidden_states</span><span class="p">])</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">dim1</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">seq_len</span><span class="p">)</span>
+<span class="n">induction_score</span> <span class="o">=</span> <span class="n">attn_hidden_states</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">induction_score</span><span class="p">,</span> <span class="n">xaxis</span><span class="o">=</span><span class="s2">&quot;Head&quot;</span><span class="p">,</span> <span class="n">yaxis</span><span class="o">=</span><span class="s2">&quot;Layer&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Induction Score by Head&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphinx-charts docutils container" id="id3">
+<div class="sphinx-charts-chart sphinx-charts-chart-id-1 sphinx-charts-chart-uri-_charts/induction.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-1">
+</div>
+<p class="sphinx-charts-hidden"></p>
+<div class="sphinx-charts-placeholder sphinx-charts-placeholder-1 docutils container" id="id4">
+<p><span class="caption-text">Loading…</span></p>
+</div>
+<p><span class="caption-text">Induction Score by Head</span></p>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basics.html">Basics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Searching for Induction Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patching.html">Patching</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Jaden Fiotto-Kaufman.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/induction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
