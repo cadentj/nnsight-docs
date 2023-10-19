@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Main Demo &#8212; nnsight 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_charts/charts.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script src="_static/sphinx_charts/plotly/plotly-2.11.1.min.js"></script>
+    <script src="_static/sphinx_charts/charts.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tutorials" href="tutorials.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="main-demo">
+<h1>Main Demo<a class="headerlink" href="#main-demo" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The Engine API is a package for doing mechanistic interpretability of large models. The goal of mechanistic
+interpretability is to take a trained model and reverse engineer the algorithms the model learned during
+training from its weights. It is a fact about the world today that we have computer programs that can essentially
+speak English at a human level (GPT-3, PaLM, etc), yet we have no idea how they work nor how to write one ourselves.</p>
+<section id="loading-models">
+<h3>Loading Models<a class="headerlink" href="#loading-models" title="Permalink to this heading">¶</a></h3>
+<p>The engine API allows you to access open source LLMs by referencing a Hugging Face repo ID.
+You can load any of them in with <code class="docutils literal notranslate"><span class="pre">LanguageModel(REPO_ID)</span></code>. For this demo we’ll look at
+GPT-2 Small, an 80M parameter model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span><span class="n">device_map</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To try the model out, lets generate some text!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">output</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Lets go over this piece by piece.</p>
+<p><strong>First, we create a generation context block</strong> by calling <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> on the model object. This denotes that we wish to generate tokens given some prompts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Calling <cite>.generate(…)</cite> does not actually initialize or run the model. Only after the <cite>with…generator:</cite> block is exited is the model actually loaded and run. All operations in the block are “proxies” which essentially creates a graph of operations we wish to carry out later.</p>
+<p><strong>Within the generation context,</strong> we create invocation contexts to specify the actual prompts we want to run.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">PROMPT</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+</pre></div>
+</div>
+<p><strong>Within an invoke context</strong>, all operations/interventions will be applied to the processing of the prompt. Models can be run on a variety of input formats: strings, lists of tokens, tensors of tokens, etc.</p>
+<p>Finally, we can access raw tensors and activations at any point in the model. <strong>*But what can we do with these activations?*</strong></p>
+<div class="sphinx-charts docutils container" id="id1">
+<div class="sphinx-charts-chart sphinx-charts-chart-id-0 sphinx-charts-chart-uri-_charts/charts/chart_schema.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-0">
+</div>
+<p class="sphinx-charts-hidden"></p>
+<div class="sphinx-charts-placeholder sphinx-charts-placeholder-0 docutils container" id="id2">
+<p><span class="caption-text">Loading…</span></p>
+</div>
+<p><span class="caption-text">Test Caption</span></p>
+</div>
+</section>
+<section id="accessing-activations">
+<h3>Accessing Activations<a class="headerlink" href="#accessing-activations" title="Permalink to this heading">¶</a></h3>
+<p>The first basic operation when doing mechanistic interpretability is to break open the black box
+and look at all of the internal activations of the model. Let’s try this out on the first line of the GPT-2 paper.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpt2_text</span> <span class="o">=</span> <span class="s2">&quot;Natural language processing tasks, such as question answering, machine translation, reading comprehension, and summarization, are typically approached with supervised learning on taskspecific datasets.&quot;</span>
+<span class="n">gpt2_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">gpt2_text</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">gpt2_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once again, we create a generate context and invoke a prompt, this time a list of tokens:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>On this line we’re saying: access the last layer of the transformer <cite>model.transformer.h[-1]</cite>, access its output <cite>.output</cite>, index it at 0 <cite>.output[0]</cite>, and save it <cite>.save()</cite>. To break this statement down:</p>
+<ul class="simple">
+<li><p><cite>model.transformer.h[-1]</cite> accesses a module in the computation graph. <cite>.transformer.h[-1]</cite> specifically accesses the last transformer layer.</p></li>
+<li><p><cite>.output</cite> returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it (which also become proxies). There are two operational proxies here, one for getting the 0th index of the output, and one for saving the output. We take the 0th index because <em>the output of gpt2 transformer layers are a tuple</em> where the first index are the actual hidden states (last two indicies are from attention).
+- <cite>.shape</cite> can be called on any proxy to get what shape the value will eventually be. Running <cite>print(model.transformer.h[-1].output.shape)</cite> returns <cite>(torch.Size([1, 10, 768]), (torch.Size([1, 12, 10, 64]), torch.Size([1, 12, 10, 64])))</cite>
+- <strong>*Note:*</strong> <cite>.input</cite> similarly returns a proxy for the inputs to this module.</p></li>
+<li><p><cite>.save()</cite> informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph we are building, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.</p></li>
+</ul>
+<p>After exiting the generator context, the model is ran with the specified arguments and intervention graph. <cite>generator.output</cite> is populated with the actual output and <cite>hidden_states.value</cite> will contain the value.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Main Demo</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Jaden Fiotto-Kaufman.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/demo.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
