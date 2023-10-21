@@ -49,10 +49,10 @@ html_sidebars = {
 
 
 
-html_theme_options = { 
-    'page_width': '10%',
-    # 'logo' : True
-    # etc.
-}
+# html_theme_options = { 
+#     'page_width': '10%',
+#     # 'logo' : True
+#     # etc.
+# }
 
 
