@@ -11,7 +11,7 @@ It offers an intuitive API for accessing the internal operations of models hoste
 `National Deep Inferencing Framework <https://thevisible.net/>`_.
 
 Check out the :doc:`start` section for further information, including how to
-:ref:`install <installation>` the project.
+:ref:`install <installation>`.
 
 Contents
 --------
