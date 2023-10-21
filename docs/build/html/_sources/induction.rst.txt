@@ -24,7 +24,7 @@ An interesting fact about induction heads is that they generalise to arbitrary s
     loss = cross_entropy_loss(logits.value, token_ids, shift=True, avg_token=False)
     line(loss, xaxis="Position", yaxis="Loss", title="Loss by position on random repeated tokens")
 
-.. chart:: line.json
+.. chart:: charts/line.json
 
     Loss by position on random repeated tokens
 
@@ -43,6 +43,6 @@ The induction heads will be attending from the second occurence of each token to
 
     imshow(induction_score, xaxis="Head", yaxis="Layer", title="Induction Score by Head")
 
-.. chart:: induction.json
+.. chart:: charts/induction.json
 
     Induction Score by Head

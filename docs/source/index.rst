@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to nnsight's documentation!
-===================================
+nnsight documentation
+=====================
 
 **nnsight** (/ɛn.saɪt/) is a Python library for the mechanistic interpretability of open LLMs. 
 It offers an intuitive API for accessing the internal operations of models hosted on the
@@ -12,11 +12,6 @@ It offers an intuitive API for accessing the internal operations of models hoste
 
 Check out the :doc:`start` section for further information, including how to
 :ref:`install <installation>` the project.
-
-.. note::
-
-   This project is under active development.
-
 
 Contents
 --------

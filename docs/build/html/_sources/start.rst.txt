@@ -10,7 +10,7 @@ To use nnsight, first install it using pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install git+https://github.com/JadenFiotto-Kaufman/ndif
+   pip install nnsight
 
 .. Creating recipes
 .. ----------------

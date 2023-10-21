@@ -1,19 +1,18 @@
 Basics
 ======
 
-Content
+This notebook covers some basic features of the Engine API. If you'd like to follow along, check out the `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_.
 
 * :ref:`loading-models`
 * :ref:`accessing_activations`
 * :ref:`intervening`
-
 
 .. _loading-models:
 
 Loading Models
 --------------
 
-The Engine API allows you to access open source LLMs by referencing a Hugging Face repo ID. 
+With the Engine API, you can access open source LLMs by referencing a Hugging Face repo ID.
 For this demo we'll look at `GPT-2 Small <https://huggingface.co/gpt2>`_, an 80M parameter model.
 
 .. code-block:: python
@@ -38,7 +37,7 @@ To try the model out, let's generate some text!
 
 Let's go over this piece by piece.
 
-**(1) We create a generation context block** by calling ``.generate(...)`` on the model object. This denotes that we wish to generate tokens given some prompts.
+**We create a generation context block** by calling ``.generate(...)`` on the model object. This denotes that we wish to generate tokens given some prompts.
 
 .. code-block:: python
 
@@ -46,13 +45,13 @@ Let's go over this piece by piece.
 
 Calling ``.generate(...)`` does not actually initialize or run the model. Only after the block is exited is the model actually loaded and run. All operations in the block are proxies which create a graph of operations to be carried out later. 
 
-**(2) Within the generation context,** we create invocation contexts to specify the actual prompts we want to run.
+**Within the generation context,** we create invocation contexts to specify the actual prompts we want to run.
 
 .. code-block:: python
 
     with generator.invoke(prompt) as invoker:
 
-**(3) Within an invoke context**, all operations/interventions will be applied to the processing of the prompt. Models can be run on a variety of input formats. See model inputs for more.
+**Within an invoke context**, all operations/interventions will be applied to the processing of the prompt. Models can be run on a variety of input formats. See model inputs for more.
 
 Finally, we can access raw tensors and activations at any point in the model. *But what can we do with these activations?*
 

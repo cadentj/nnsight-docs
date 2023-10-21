@@ -14,6 +14,9 @@ copyright = '2023, Jaden Fiotto-Kaufman'
 author = 'Jaden Fiotto-Kaufman'
 release = '0.1'
 
+
+fixed_sidebar=True
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -21,6 +24,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx_charts.charts',
+    'sphinx_copybutton',
 ]
 
 templates_path = ['_templates']
@@ -34,9 +38,20 @@ exclude_patterns = []
 html_theme = 'alabaster'
 
 html_static_path = ['_static']
+
 html_sidebars = {
     '**': [
         'globaltoc.html',
-        'searchbox.html',
     ]
+}
+
+# html_logo = '/home/caden/Programming/engine-docs/docs/source/_static/images/stars.png'
+# html_theme_options = { 
+#     'logo' : True
+#     # etc.
+# }
+
+
+html_theme_options = {
+    'page_width': '1000px',
 }
