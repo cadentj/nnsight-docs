@@ -1,1 +1,6 @@
 nnsight
+alabaster
+sphinx
+sphinx_charts
+sphinx-copybutton
+plotly

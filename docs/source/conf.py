@@ -21,7 +21,7 @@ fixed_sidebar=True
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
+    # 'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx_charts.charts',
     'sphinx_copybutton',
