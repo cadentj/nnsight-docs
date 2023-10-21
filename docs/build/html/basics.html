@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-theme="light">
 
   <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -54,7 +54,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
 
   
   
@@ -110,7 +110,7 @@
   
   
   
-    <p class="title logo__title">nnsight 0.1 documentation</p>
+    <p class="title logo__title">nnsight</p>
   
 </a></div>
     
@@ -133,6 +133,13 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="start.html">
                         Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation.html">
+                        Documentation
                       </a>
                     </li>
                 
@@ -163,17 +170,6 @@ document.write(`
         </div>
       
       
-        <div class="navbar-item">
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script></div>
-      
     </div>
     
   </div>
@@ -202,7 +198,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -227,6 +223,13 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="tutorials.html">
                         Tutorials
@@ -240,22 +243,37 @@ document.write(`
     
     
     
-      <div class="sidebar-header-items__end">
-        
-          <div class="navbar-item">
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script></div>
-        
-      </div>
-    
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="induction.html">Searching for Induction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patching.html">Patching</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -319,13 +337,13 @@ document.write(`
 </ul>
 <section id="loading-models">
 <span id="id1"></span><h2>Loading Models<a class="headerlink" href="#loading-models" title="Permalink to this heading">#</a></h2>
-<p>With the Engine API, you can access open source LLMs by referencing a Hugging Face repo ID.
+<p>With nnsight, you can access open source LLMs by referencing a Hugging Face repo ID.
 For this demo we’ll look at <a class="reference external" href="https://huggingface.co/gpt2">GPT-2 Small</a>, an 80M parameter model.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare the model and load onto device</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span><span class="n">device_map</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To try the model out, let’s generate some text!</p>
+<p>Generate some text.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
@@ -338,7 +356,7 @@ For this demo we’ll look at <a class="reference external" href="https://huggin
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;The Eiffel Tower is in the city of Paris&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Let’s go over this piece by piece.</p>
+<p>Let’s break this down piece by piece.</p>
 <p><strong>We create a generation context block</strong> by calling <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> on the model object. This denotes that we wish to generate tokens given some prompts.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
 </pre></div>
@@ -353,8 +371,7 @@ For this demo we’ll look at <a class="reference external" href="https://huggin
 </section>
 <section id="accessing-activations">
 <span id="id2"></span><h2>Accessing Activations<a class="headerlink" href="#accessing-activations" title="Permalink to this heading">#</a></h2>
-<p>The first basic operation when doing mechanistic interpretability is to break open the black box
-and look at all of the internal activations of the model.</p>
+<p>The first basic feature is to break open the black box and look at all of the internal activations of the model.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpt2_text</span> <span class="o">=</span> <span class="s2">&quot;Natural language processing tasks, such as...&quot;</span>
 <span class="n">gpt2_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">gpt2_text</span><span class="p">)</span>
 
@@ -364,29 +381,32 @@ and look at all of the internal activations of the model.</p>
 </span></pre></div>
 </div>
 <p>Lets focus on the highlighted line.</p>
+<p><strong>First,</strong> <code class="docutils literal notranslate"><span class="pre">model.transformer.h[-1]</span></code> accesses a module in the computation graph, specifically the last transformer layer <code class="docutils literal notranslate"><span class="pre">h[-1]</span></code>.</p>
+<p><strong>Then,</strong> <code class="docutils literal notranslate"><span class="pre">.output</span></code> returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it. The outputs become operational proxies, one for getting the 0th index of the output, and another for saving the output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">768</span><span class="p">]),</span> \
+    <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">]),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">])))</span>
+</pre></div>
+</div>
+<p>We take the 0th index because the output of gpt2 transformer layers are a <em>tuple</em> where the first index is the actual hidden states and the last two are from attention.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">model.transformer.h[-1]</span></code> accesses a module in the computation graph, specifically the last transformer layer.</p>
-<p><code class="docutils literal notranslate"><span class="pre">.output</span></code> returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it. The outputs become two operational proxies, one for getting the 0th index of the output, and one for saving the output. We take the 0th index because the output of gpt2 transformer layers are a <em>tuple</em> where the first index is the actual hidden states and the last two are from attention.</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> can be called on any proxy to get what shape the value will eventually be.</p>
+<div><p><strong>Other Operations on Proxies</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> can be called on any proxy to get what shape the value will eventually be.</p>
 <p><code class="docutils literal notranslate"><span class="pre">.input</span></code> similarly returns a proxy for the inputs to this module.</p>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">.save()</span></code> informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph we are building, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.</p>
-</div></blockquote>
+<p><strong>Finally,</strong> <code class="docutils literal notranslate"><span class="pre">.save()</span></code> informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.</p>
 <p>After exiting the generator context, the model is ran with the specified arguments and intervention graph. <code class="docutils literal notranslate"><span class="pre">generator.output</span></code> is populated with the actual output and <code class="docutils literal notranslate"><span class="pre">hidden_states.value</span></code> will contain the value.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
 <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Should return:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mi">35364</span><span class="p">,</span>  <span class="mi">3303</span><span class="p">,</span>  <span class="mi">7587</span><span class="p">,</span>  <span class="mi">8861</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>   <span class="mi">884</span><span class="p">,</span>   <span class="mi">355</span><span class="p">,</span>  <span class="mi">1808</span><span class="p">,</span> <span class="mi">18877</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">([[</span><span class="mi">35364</span><span class="p">,</span>  <span class="mi">3303</span><span class="p">,</span>  <span class="mi">7587</span><span class="p">,</span>  <span class="mi">8861</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>   <span class="mi">884</span><span class="p">,</span>   <span class="mi">355</span><span class="p">,</span>  <span class="mi">1808</span><span class="p">,</span> <span class="mi">18877</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>
       <span class="mi">4572</span><span class="p">,</span> <span class="mi">11059</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>  <span class="mi">3555</span><span class="p">,</span> <span class="mi">35915</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>   <span class="mi">290</span><span class="p">,</span> <span class="mi">15676</span><span class="p">,</span>  <span class="mi">1634</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>
        <span class="mi">389</span><span class="p">,</span>  <span class="mi">6032</span><span class="p">,</span> <span class="mi">10448</span><span class="p">,</span>   <span class="mi">351</span><span class="p">,</span> <span class="mi">28679</span><span class="p">,</span>  <span class="mi">4673</span><span class="p">,</span>   <span class="mi">319</span><span class="p">,</span>  <span class="mi">8861</span><span class="p">,</span>   <span class="mi">431</span><span class="p">,</span>  <span class="mi">7790</span><span class="p">,</span>
      <span class="mi">40522</span><span class="p">,</span>    <span class="mi">13</span><span class="p">,</span>  <span class="mi">2102</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
-<span class="n">tensor</span><span class="p">([[[</span> <span class="o">-</span><span class="mf">0.2059</span><span class="p">,</span>   <span class="mf">0.1688</span><span class="p">,</span>  <span class="o">-</span><span class="mf">2.0503</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.3703</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.2015</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.6594</span><span class="p">],</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">([[[</span> <span class="o">-</span><span class="mf">0.2059</span><span class="p">,</span>   <span class="mf">0.1688</span><span class="p">,</span>  <span class="o">-</span><span class="mf">2.0503</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.3703</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.2015</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.6594</span><span class="p">],</span>
         <span class="p">[</span> <span class="o">-</span><span class="mf">3.9412</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.2137</span><span class="p">,</span>  <span class="o">-</span><span class="mf">8.5667</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">6.3562</span><span class="p">,</span>   <span class="mf">4.1276</span><span class="p">,</span>   <span class="mf">3.6006</span><span class="p">],</span>
         <span class="p">[</span> <span class="o">-</span><span class="mf">2.0798</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.5781</span><span class="p">,</span>  <span class="o">-</span><span class="mf">6.1944</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">4.8023</span><span class="p">,</span>   <span class="mf">5.6864</span><span class="p">,</span>  <span class="o">-</span><span class="mf">2.6289</span><span class="p">],</span>
         <span class="o">...</span><span class="p">,</span>
@@ -399,8 +419,7 @@ and look at all of the internal activations of the model.</p>
 </section>
 <section id="intervening-on-activations">
 <span id="intervening"></span><h2>Intervening on Activations<a class="headerlink" href="#intervening-on-activations" title="Permalink to this heading">#</a></h2>
-<p>One of the great things about interpreting neural networks is that we have <em>full control</em> over our system. From a computational perspective, we know exactly what operations are going on inside (even if we don’t know what they mean!). And we can make precise, surgical edits and see how the model’s behaviour and other internals change. This is an extremely powerful tool, because it can let us set up careful counterfactuals and causal intervention to easily understand model behaviour.</p>
-<p>Accordingly, being able to do this is a pretty core operation, and this is one of the main things the Engine API supports! The key features here are <strong>operation</strong> and <strong>setting</strong>. Within an invoke context, most basic operations and torch operations work on proxies and are added to the computation graph. We can also use the assignment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to edit and intervene on the flow of information.</p>
+<p>The key features here are <strong>operation</strong> and <strong>setting</strong>. Within an invoke context, most basic operations and torch operations work on proxies and are added to the computation graph. We can also use the assignment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to edit and intervene on the flow of information.</p>
 <p>As a basic example, let’s <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=fh-HJyz1CgUVrXuoiban6bYx">ablate</a> head 7 in layer 0 on the text above.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer_to_ablate</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">head_index_to_ablate</span> <span class="o">=</span> <span class="mi">7</span>
@@ -418,16 +437,15 @@ and look at all of the internal activations of the model.</p>
 <span class="n">ablated_lm_head</span> <span class="o">=</span> <span class="n">ablated_lm_head</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
-<p>As a result of ablating the head, we see a noticable change in loss.</p>
+<p>As a result of ablating the head, we observe a noticable change in loss.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">gpt2_tokens</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">normal_lm_head</span><span class="p">,</span> <span class="n">tensor_tokens</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">4.0187</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">abalated_lm_head</span><span class="p">,</span> <span class="n">tensor_tokens</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">ablated_lm_head</span><span class="p">,</span> <span class="n">tensor_tokens</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">4.2913</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now that we’ve covered the basic tools of the Engine API, how can we use these tools to understand broader model behavior?</p>
 </section>
 </section>
 

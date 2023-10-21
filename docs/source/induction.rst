@@ -11,6 +11,9 @@ An interesting fact about induction heads is that they generalise to arbitrary s
 
 .. code-block:: python
 
+    # Declare the model and load onto device
+    model = LanguageModel('gpt2',device_map=device)
+
     batch_size = 10
     seq_len = 50
     random_tokens = torch.randint(1000, 10000, (batch_size, seq_len))
@@ -28,7 +31,7 @@ An interesting fact about induction heads is that they generalise to arbitrary s
 
     Loss by position on random repeated tokens
 
-The induction heads will be attending from the second occurence of each token to the token *after* its first occurence, ie the token `50-1==49` places back. So by looking at the average attention paid 49 tokens back, we can identify induction heads!
+The induction heads will be attending from the second occurence of each token to the token *after* its first occurence, ie the token ``50-1==49`` places back. So by looking at the average attention paid 49 tokens back, we can identify induction heads!
 
 .. code-block:: python
 

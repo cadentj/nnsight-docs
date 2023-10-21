@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-theme="light">
 
   <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -57,7 +57,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
 
   
   
@@ -113,7 +113,7 @@
   
   
   
-    <p class="title logo__title">nnsight 0.1 documentation</p>
+    <p class="title logo__title">nnsight</p>
   
 </a></div>
     
@@ -136,6 +136,13 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="start.html">
                         Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation.html">
+                        Documentation
                       </a>
                     </li>
                 
@@ -166,17 +173,6 @@ document.write(`
         </div>
       
       
-        <div class="navbar-item">
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script></div>
-      
     </div>
     
   </div>
@@ -205,7 +201,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -230,6 +226,13 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="documentation.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="tutorials.html">
                         Tutorials
@@ -243,22 +246,37 @@ document.write(`
     
     
     
-      <div class="sidebar-header-items__end">
-        
-          <div class="navbar-item">
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script></div>
-        
-      </div>
-    
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="induction.html">Searching for Induction Heads</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Patching</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -317,9 +335,15 @@ document.write(`
 <p>For a somewhat more involved example, let’s apply <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx">activation patching</a> on the <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=iWsV3s5Kdd2ca3zNgXr5UPHa">Indirect Object Identification</a> (IOI) task.</p>
 <p>The IOI task is the task of identifying that a sentence like “After John and Mary went to the store, Mary gave a bottle of milk to” continues with “ John” rather than “ Mary” (ie, finding the indirect object), and Redwood Research have <a class="reference external" href="https://arxiv.org/abs/2211.00593">an excellent paper studying the underlying circuit in GPT-2 Small</a>.</p>
 <p><a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx">Activation patching</a> is a technique from <a class="reference external" href="https://rome.baulab.info/">Kevin Meng and David Bau’s excellent ROME paper</a>. The goal is to identify which model activations are important for completing a task. We do this by setting up a <strong>clean prompt</strong> and a <strong>corrupted prompt</strong> and a <strong>metric</strong> for performance on the task. We then pick a specific model activation, run the model on the corrupted prompt, but then <em>intervene</em> on that activation and patch in its value when run on the clean prompt. We then apply the metric, and see how much this patch has recovered the clean performance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clean_prompt</span> <span class="o">=</span> \
+<span class="s2">&quot;After John and Mary went to the store, Mary gave a bottle of milk to&quot;</span>
+<span class="n">corrupted_prompt</span> <span class="o">=</span> \
+<span class="s2">&quot;After John and Mary went to the store, John gave a bottle of milk to&quot;</span>
+</pre></div>
+</div>
 <p>Here, our clean prompt is “After John and Mary went to the store, <strong>Mary</strong> gave a bottle of milk to”, our corrupted prompt is “After John and Mary went to the store, <strong>John</strong> gave a bottle of milk to”, and our metric is the difference between the correct logit (John) and the incorrect logit (Mary) on the final token.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clean_prompt</span> <span class="o">=</span> <span class="s2">&quot;After John and Mary went to the store, Mary gave a bottle of milk to&quot;</span>
-<span class="n">corrupted_prompt</span> <span class="o">=</span> <span class="s2">&quot;After John and Mary went to the store, John gave a bottle of milk to&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare the model and load onto device</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span><span class="n">device_map</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 
 <span class="n">clean_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">clean_prompt</span><span class="p">)</span>
 <span class="n">corrupted_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">corrupted_prompt</span><span class="p">)</span>

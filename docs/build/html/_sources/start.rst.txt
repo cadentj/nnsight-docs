@@ -1,40 +1,25 @@
 Getting Started
 ===============
 
+nnsight (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of deep learning models.
+
 .. _installation:
 
 Installation
 ------------
 
-To use nnsight, first install it using pip:
+To get started with nnsight, install it with ``pip``. 
 
 .. code-block:: console
 
    pip install nnsight
 
-.. Creating recipes
-.. ----------------
 
-.. To retrieve a list of random ingredients,
-.. you can use the ``lumache.get_random_ingredients()`` function:
+First Steps
+-----------
 
-.. .. py:function:: lumache.get_random_ingredients(kind=None)
+Check out the :doc:`tutorials` section for some examples on how to get started with nnsight.
 
-..    Return a list of random ingredients as strings.
+If you'd like a more hands on experience, this `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_ covers some basic features and applied examples of the package.
 
-..    :param kind: Optional "kind" of ingredients.
-..    :type kind: list[str] or None
-..    :raise lumache.InvalidKindError: If the kind is invalid.
-..    :return: The ingredients list.
-..    :rtype: list[str]
-
-
-
-
-.. The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-.. or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-.. will raise an exception.
-
-.. .. py:exception:: lumache.InvalidKindError
-
-..    Raised if the kind is invalid.
+Not all features of the package have been documented yet. For more examples, see `nnsight/examples <https://github.com/JadenFiotto-Kaufman/nnsight/tree/main/examples>`_ on the Github. `Here's <https://github.com/JadenFiotto-Kaufman/nnsight/blob/main/examples/lora.py>`_ a working example on LORA and the forward pass context of the package.

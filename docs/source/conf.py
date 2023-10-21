@@ -37,25 +37,22 @@ exclude_patterns = []
 
 html_theme = "pydata_sphinx_theme"
 
+
 html_static_path = ['_static']
 
 html_sidebars = {
-    '**': [
-        
-    ]
+    "**": ["search-field.html", "sidebar-nav-bs"]
 }
 
-# html_logo = '/home/caden/Programming/engine-docs/docs/source/_static/images/stars.png'
+# html_logo = "_static/images/stars.png"
+
 html_theme_options = {
-  "show_nav_level": 2
+  "logo": {"text":"nnsight"},
+  "show_nav_level": 2,
+  "navbar_end": ["navbar-icon-links"],
 }
 
-
-
-# html_theme_options = { 
-#     'page_width': '10%',
-#     # 'logo' : True
-#     # etc.
-# }
-
+html_context = {
+   "default_mode": "light"
+}
 

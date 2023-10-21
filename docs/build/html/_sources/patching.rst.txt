@@ -7,12 +7,19 @@ The IOI task is the task of identifying that a sentence like "After John and Mar
 
 `Activation patching <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx>`_ is a technique from `Kevin Meng and David Bau's excellent ROME paper <https://rome.baulab.info/>`_. The goal is to identify which model activations are important for completing a task. We do this by setting up a **clean prompt** and a **corrupted prompt** and a **metric** for performance on the task. We then pick a specific model activation, run the model on the corrupted prompt, but then *intervene* on that activation and patch in its value when run on the clean prompt. We then apply the metric, and see how much this patch has recovered the clean performance. 
 
+.. code-block:: python
+
+    clean_prompt = \
+    "After John and Mary went to the store, Mary gave a bottle of milk to"
+    corrupted_prompt = \
+    "After John and Mary went to the store, John gave a bottle of milk to"
+
 Here, our clean prompt is "After John and Mary went to the store, **Mary** gave a bottle of milk to", our corrupted prompt is "After John and Mary went to the store, **John** gave a bottle of milk to", and our metric is the difference between the correct logit (John) and the incorrect logit (Mary) on the final token. 
 
 .. code-block:: python
 
-    clean_prompt = "After John and Mary went to the store, Mary gave a bottle of milk to"
-    corrupted_prompt = "After John and Mary went to the store, John gave a bottle of milk to"
+    # Declare the model and load onto device
+    model = LanguageModel('gpt2',device_map=device)
 
     clean_tokens = model.tokenizer.encode(clean_prompt)
     corrupted_tokens = model.tokenizer.encode(corrupted_prompt)

@@ -12,7 +12,7 @@ This notebook covers the basic features of the Engine API. If you'd like to foll
 Loading Models
 --------------
 
-With the Engine API, you can access open source LLMs by referencing a Hugging Face repo ID.
+With nnsight, you can access open source LLMs by referencing a Hugging Face repo ID.
 For this demo we'll look at `GPT-2 Small <https://huggingface.co/gpt2>`_, an 80M parameter model.
 
 .. code-block:: python
@@ -20,7 +20,7 @@ For this demo we'll look at `GPT-2 Small <https://huggingface.co/gpt2>`_, an 80M
     # Declare the model and load onto device
     model = LanguageModel('gpt2',device_map=device)
 
-To try the model out, let's generate some text!
+Generate some text.
 
 .. code-block:: python
 
@@ -35,7 +35,7 @@ To try the model out, let's generate some text!
     print([model.tokenizer.decode(t) for t in output])
     >>> ['The Eiffel Tower is in the city of Paris']
 
-Let's go over this piece by piece.
+Let's break this down piece by piece.
 
 **We create a generation context block** by calling ``.generate(...)`` on the model object. This denotes that we wish to generate tokens given some prompts.
 
@@ -60,8 +60,7 @@ Finally, we can access raw tensors and activations at any point in the model. *B
 Accessing Activations
 ---------------------
 
-The first basic operation when doing mechanistic interpretability is to break open the black box 
-and look at all of the internal activations of the model. 
+The first basic feature is to break open the black box and look at all of the internal activations of the model. 
 
 .. code-block:: python
     :emphasize-lines: 6
@@ -75,15 +74,25 @@ and look at all of the internal activations of the model.
 
 Lets focus on the highlighted line.
 
-    ``model.transformer.h[-1]`` accesses a module in the computation graph, specifically the last transformer layer. 
+**First,** ``model.transformer.h[-1]`` accesses a module in the computation graph, specifically the last transformer layer ``h[-1]``. 
 
-    ``.output`` returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it. The outputs become two operational proxies, one for getting the 0th index of the output, and one for saving the output. We take the 0th index because the output of gpt2 transformer layers are a *tuple* where the first index is the actual hidden states and the last two are from attention. 
+**Then,** ``.output`` returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it. The outputs become operational proxies, one for getting the 0th index of the output, and another for saving the output. 
 
-        ``.shape`` can be called on any proxy to get what shape the value will eventually be.
-        
-        ``.input`` similarly returns a proxy for the inputs to this module. 
+.. code-block:: python
 
-    ``.save()`` informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph we are building, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.
+    print(model.transformer.h[-1].output.shape)
+    >>> (torch.Size([1, 10, 768]), \
+        (torch.Size([1, 12, 10, 64]), torch.Size([1, 12, 10, 64])))
+
+We take the 0th index because the output of gpt2 transformer layers are a *tuple* where the first index is the actual hidden states and the last two are from attention. 
+
+    **Other Operations on Proxies** 
+
+    ``.shape`` can be called on any proxy to get what shape the value will eventually be.
+    
+    ``.input`` similarly returns a proxy for the inputs to this module. 
+
+**Finally,** ``.save()`` informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.
 
 After exiting the generator context, the model is ran with the specified arguments and intervention graph. ``generator.output`` is populated with the actual output and ``hidden_states.value`` will contain the value.
 
@@ -93,17 +102,13 @@ After exiting the generator context, the model is ran with the specified argumen
     hidden_states = hidden_states.value
 
     print(output)
-    print(hidden_states)
-
-Should return:
-
-.. code-block:: python
-
-    tensor([[35364,  3303,  7587,  8861,    11,   884,   355,  1808, 18877,    11,
+    >>> tensor([[35364,  3303,  7587,  8861,    11,   884,   355,  1808, 18877, 11,
           4572, 11059,    11,  3555, 35915,    11,   290, 15676,  1634,    11,
            389,  6032, 10448,   351, 28679,  4673,   319,  8861,   431,  7790,
          40522,    13,  2102]], device='cuda:0')
-    tensor([[[ -0.2059,   0.1688,  -2.0503,  ...,  -0.3703,  -0.2015,  -1.6594],
+
+    print(hidden_states)
+    >>> tensor([[[ -0.2059,   0.1688,  -2.0503,  ...,  -0.3703,  -0.2015,  -1.6594],
             [ -3.9412,  -0.2137,  -8.5667,  ...,   6.3562,   4.1276,   3.6006],
             [ -2.0798,  -1.5781,  -6.1944,  ...,   4.8023,   5.6864,  -2.6289],
             ...,
@@ -117,9 +122,7 @@ Should return:
 Intervening on Activations
 --------------------------
 
-One of the great things about interpreting neural networks is that we have *full control* over our system. From a computational perspective, we know exactly what operations are going on inside (even if we don't know what they mean!). And we can make precise, surgical edits and see how the model's behaviour and other internals change. This is an extremely powerful tool, because it can let us set up careful counterfactuals and causal intervention to easily understand model behaviour. 
-
-Accordingly, being able to do this is a pretty core operation, and this is one of the main things the Engine API supports! The key features here are **operation** and **setting**. Within an invoke context, most basic operations and torch operations work on proxies and are added to the computation graph. We can also use the assignment ``=`` operator to edit and intervene on the flow of information.
+The key features here are **operation** and **setting**. Within an invoke context, most basic operations and torch operations work on proxies and are added to the computation graph. We can also use the assignment ``=`` operator to edit and intervene on the flow of information.
 
 As a basic example, let's `ablate <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=fh-HJyz1CgUVrXuoiban6bYx>`_ head 7 in layer 0 on the text above. 
 
@@ -140,7 +143,7 @@ As a basic example, let's `ablate <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519
     normal_lm_head = normal_lm_head.value
     ablated_lm_head = ablated_lm_head.value
 
-As a result of ablating the head, we see a noticable change in loss. 
+As a result of ablating the head, we observe a noticable change in loss. 
 
 .. code-block:: python
 
@@ -148,7 +151,6 @@ As a result of ablating the head, we see a noticable change in loss.
     print(cross_entropy_loss(normal_lm_head, tensor_tokens, shift=True))
     >>> tensor(4.0187)
 
-    print(cross_entropy_loss(abalated_lm_head, tensor_tokens, shift=True))
+    print(cross_entropy_loss(ablated_lm_head, tensor_tokens, shift=True))
     >>> tensor(4.2913)
 
-Now that we've covered the basic tools of the Engine API, how can we use these tools to understand broader model behavior? 

@@ -6,18 +6,13 @@
 nnsight documentation
 =====================
 
-**nnsight** (/ɛn.saɪt/) is a Python library for the mechanistic interpretability of open LLMs. 
-It offers an intuitive API for accessing the internal operations of models hosted on the
-`National Deep Inferencing Framework <https://thevisible.net/>`_.
+**nnsight** (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of deep learning models.
 
-Check out the :doc:`start` section for further information, including how to
-:ref:`install <installation>`.
-
-Contents
---------
+Check out the :doc:`start` section for more information, including how to :ref:`install <installation>` the package.
 
 .. toctree::
    :maxdepth: 2
 
    start
+   documentation
    tutorials
