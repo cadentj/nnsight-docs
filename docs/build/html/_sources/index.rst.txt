@@ -20,5 +20,4 @@ Contents
    :maxdepth: 2
 
    start
-   generator
    tutorials

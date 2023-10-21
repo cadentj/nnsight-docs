@@ -1,7 +1,7 @@
 Basics
 ======
 
-This notebook covers some basic features of the Engine API. If you'd like to follow along, check out the `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_.
+This notebook covers the basic features of the Engine API. If you'd like to follow along, check out the `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_.
 
 * :ref:`loading-models`
 * :ref:`accessing_activations`
