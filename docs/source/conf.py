@@ -46,12 +46,12 @@ html_sidebars = {
 }
 
 # html_logo = '/home/caden/Programming/engine-docs/docs/source/_static/images/stars.png'
-# html_theme_options = { 
-#     'logo' : True
-#     # etc.
-# }
 
 
-html_theme_options = {
-    'page_width': '1000px',
+html_theme_options = { 
+    'page_width': '100px',
+    # 'logo' : True
+    # etc.
 }
+
+
