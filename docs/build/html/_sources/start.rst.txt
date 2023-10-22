@@ -22,4 +22,4 @@ Check out the :doc:`tutorials` section for some examples on how to get started w
 
 If you'd like a more hands on experience, this `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_ covers some basic features and applied examples of the package.
 
-Not all features of the package have been documented yet. For more examples, see `nnsight/examples <https://github.com/JadenFiotto-Kaufman/nnsight/tree/main/examples>`_ on the Github. `Here's <https://github.com/JadenFiotto-Kaufman/nnsight/blob/main/examples/lora.py>`_ a working example on LORA and the forward pass context of the package.
+Not all features of the package have been documented yet. For more examples, see `nnsight/examples <https://github.com/JadenFiotto-Kaufman/nnsight/tree/main/examples>`_ on the Github.

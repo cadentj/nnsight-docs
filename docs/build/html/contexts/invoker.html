@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Ad-Hoc Module &#8212; nnsight 0.1 documentation</title>
+    <title>Invoker &#8212; nnsight 0.1 documentation</title>
   
   
   
@@ -52,8 +52,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cross Prompt intervention" href="crossprompt.html" />
-    <link rel="prev" title="Features" href="../features.html" />
+    <link rel="next" title="Forward" href="runner.html" />
+    <link rel="prev" title="Generator" href="generator.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -272,17 +272,17 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../features.html">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ad-Hoc Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="crossprompt.html">Cross Prompt intervention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multitoken.html">Multiple Token Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pertoken.html">Per Token Indexing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features.html">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/adhoc.html">Ad-Hoc Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/crossprompt.html">Cross Prompt intervention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/multitoken.html">Multiple Token Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/pertoken.html">Per Token Indexing</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contexts.html">Contexts</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../contexts/generator.html">Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contexts/invoker.html">Invoker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contexts/runner.html">Forward</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contexts.html">Contexts</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Invoker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runner.html">Forward</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../models.html">Models</a><input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -290,7 +290,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../toolbox.html">Toolbox</a><input checked class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../toolbox/lora.html">LORA (Low-Rank Adaptation) Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolbox/lora.html">nnsight.toolbox.optim.LORA</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../utils.html">Utils</a><input checked class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -338,9 +338,9 @@ document.write(`
     <li class="breadcrumb-item"><a href="../documentation.html" class="nav-link">Documentation</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../features.html" class="nav-link">Features</a></li>
+    <li class="breadcrumb-item"><a href="../contexts.html" class="nav-link">Contexts</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Ad-Hoc Module</li>
+    <li class="breadcrumb-item active" aria-current="page">Invoker</li>
   </ul>
 </nav>
 </div>
@@ -357,48 +357,77 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="ad-hoc-module">
-<h1>Ad-Hoc Module<a class="headerlink" href="#ad-hoc-module" title="Permalink to this heading">#</a></h1>
-<p>You can apply modules in the model’s module tree at any point during computation, even if it’s out of order.</p>
-<p>Here we get the hidden states of the last layer like usual. We also chain apply <code class="docutils literal notranslate"><span class="pre">model.transformer.ln_f</span></code> and <code class="docutils literal notranslate"><span class="pre">model.lm_head</span></code> in order to “decode” the hidden states into vocabularly space. Applying softmax and then argmax allows us to then transform the vocabulary space hidden states into actually tokens which we can then use the tokenizer to decode.</p>
-<div class="jupyter_cell jupyter_container docutils container">
-<div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-<span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+  <section id="invoker">
+<h1>Invoker<a class="headerlink" href="#invoker" title="Permalink to this heading">#</a></h1>
+<p>Within the generation context, we create invocation contexts to specify the actual prompts we want to run. Inside of the block, all operations/interventions will be applied to the processing of the specified prompt.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="nnsight.contexts.Generator.invoke">
+<span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Generator.</span></span><span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Invoker" title="nnsight.contexts.Invoker"><span class="pre">Invoker</span></a></span></span><a class="headerlink" href="#nnsight.contexts.Generator.invoke" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#nnsight.contexts.Invoker" title="nnsight.contexts.Invoker"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker</span></code></a> context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> (<em>Union</em><em>[</em><em>torch.tensor</em><em>, </em><em>List</em><em>]</em>) – A sequence or batch of prompts.</p>
+</dd>
+</dl>
+</dd></dl>
 
-    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">ln_f</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">))</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.</span></span><span class="sig-name descname"><span class="pre">Invoker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Generator'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker" title="Permalink to this definition">#</a></dt>
+<dd><p>The Invoker class is responsible for setting up the environment for a model generation invocation.
+It sets up input, arguments, and keyword arguments for the model generation, and also keeps track
+of tokenized input and generated token ids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generator</strong> (<a class="reference internal" href="generator.html#nnsight.contexts.Generator" title="nnsight.contexts.Generator"><em>Generator</em></a>) – The Generator object that orchestrates the model generation.</p></li>
+<li><p><strong>input</strong> – The input data for the model.</p></li>
+<li><p><strong>args</strong> – Additional arguments for the model.</p></li>
+<li><p><strong>kwargs</strong> – Additional keyword arguments for the model.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.__enter__">
+<span class="sig-name descname"><span class="pre">__enter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Invoker" title="nnsight.contexts.Invoker"><span class="pre">Invoker</span></a></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.__enter__" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets up the environment for a new model generation invocation.</p>
+</dd></dl>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.__exit__">
+<span class="sig-name descname"><span class="pre">__exit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_tb</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.__exit__" title="Permalink to this definition">#</a></dt>
+<dd><p>Cleans up the environment after a model generation invocation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.next" title="Permalink to this definition">#</a></dt>
+<dd><p>Prepares for the next generation iteration by incrementing the generation index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.save_all">
+<span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Proxy</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.save_all" title="Permalink to this definition">#</a></dt>
+<dd><p>Saves the output of all model modules and returns a dictionary mapping module paths to save proxies.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Madison square garden is located in the city of New&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">lm_head_one</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">lm_head_two</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[ -36.2874,  -35.0114,  -38.0793,  ...,  -40.5163,  -41.3759,
-       -34.9193],
-     [ -68.8886,  -70.1562,  -71.8408,  ...,  -80.4195,  -78.2552,
-       -71.1206],
-     [ -82.2950,  -81.6519,  -83.9941,  ...,  -94.4878,  -94.5194,
-       -85.6998],
-     ...,
-     [-113.8675, -111.8628, -113.6634,  ..., -116.7652, -114.8267,
-      -112.3621],
-     [ -81.8531,  -83.3006,  -91.8192,  ...,  -92.9943,  -89.8382,
-       -85.6898],
-     [-103.9307, -102.5054, -105.1563,  ..., -109.3099, -110.4195,
-      -103.1395]]], device=&#39;cuda:0&#39;)
-
-tensor([[ 198,   12,  417, 8765,  318,  257,  262, 3504, 7372, 6342]],
-    device=&#39;cuda:0&#39;)
-
--el Tower is a the middle centre Paris
-</pre></div>
-</div>
-</div>
-</div>
+<p>Multiple invocation contexts can be called within a generate context. Operations within different contexts have no impact on other contexts unless explicitly cross applied. See <a class="reference internal" href="../features/crossprompt.html"><span class="doc">cross prompt intervention</span></a> for more.</p>
+</section>
 </section>
 
 
@@ -413,20 +442,20 @@ tensor([[ 198,   12,  417, 8765,  318,  257,  262, 3504, 7372, 6342]],
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../features.html"
+       href="generator.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Features</p>
+        <p class="prev-next-title">Generator</p>
       </div>
     </a>
     <a class="right-next"
-       href="crossprompt.html"
+       href="runner.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cross Prompt intervention</p>
+        <p class="prev-next-title">Forward</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -443,8 +472,26 @@ tensor([[ 198,   12,  417, 8765,  318,  257,  262, 3504, 7372, 6342]],
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
   <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.invoke"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Generator.invoke()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.__enter__"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker.__enter__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.__exit__"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker.__exit__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.next"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker.next()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.save_all"><code class="docutils literal notranslate"><span class="pre">nnsight.contexts.Invoker.save_all()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../_sources/features/adhoc.rst.txt">
+    <a href="../_sources/contexts/invoker.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

@@ -1,7 +1,7 @@
 Patching
 ========
 
-For a somewhat more involved example, let's apply `activation patching <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx>`_ on the `Indirect Object Identification <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=iWsV3s5Kdd2ca3zNgXr5UPHa>`_ (IOI) task. 
+Let's apply `activation patching <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx>`_ on the `Indirect Object Identification <https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=iWsV3s5Kdd2ca3zNgXr5UPHa>`_ (IOI) task. 
 
 The IOI task is the task of identifying that a sentence like "After John and Mary went to the store, Mary gave a bottle of milk to" continues with " John" rather than " Mary" (ie, finding the indirect object), and Redwood Research have `an excellent paper studying the underlying circuit in GPT-2 Small <https://arxiv.org/abs/2211.00593>`_.
 

@@ -52,7 +52,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Per Token Indexing" href="pertoken.html" />
+    <link rel="next" title="Multiple Token Generation" href="multitoken.html" />
     <link rel="prev" title="Ad-Hoc Module" href="adhoc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -275,12 +275,14 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../features.html">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="adhoc.html">Ad-Hoc Module</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Cross Prompt intervention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multitoken.html">Multiple Token Generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pertoken.html">Per Token Indexing</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contexts.html">Contexts</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../contexts/generate.html">nnsight.generate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../contexts/invoke.html">invoke</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contexts/generator.html">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contexts/invoker.html">Invoker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contexts/runner.html">Forward</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../models.html">Models</a><input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -288,10 +290,13 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../toolbox.html">Toolbox</a><input checked class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../toolbox/lora.html">LORA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../toolbox/lora.html">LORA (Low-Rank Adaptation) Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../utils.html">Utils</a><input checked class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../utils/crossentropy.html">nnsight.utils.cross_entropy_loss</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav></div>
@@ -446,11 +451,11 @@ _ _ _ _ _ _ _ _ _ _ York City.
       </div>
     </a>
     <a class="right-next"
-       href="pertoken.html"
+       href="multitoken.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Per Token Indexing</p>
+        <p class="prev-next-title">Multiple Token Generation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

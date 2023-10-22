@@ -8,7 +8,7 @@ nnsight documentation
 
 **nnsight** (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of deep learning models.
 
-Check out the :doc:`start` section for more information, including how to :ref:`install <installation>` the package.
+**Useful Links:** :doc:`Getting Started <start>` \| :ref:`installation` \| :doc:`Tutorials </tutorials/basics>` \| `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing#scrollTo=85a08a13-337b-458b-8b6c-e92cd072e846>`_
 
 .. toctree::
    :maxdepth: 2
