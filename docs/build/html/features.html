@@ -31,6 +31,8 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
@@ -45,9 +47,13 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Patching" href="patching.html" />
+    <link rel="next" title="Ad-Hoc Module" href="features/adhoc.html" />
+    <link rel="prev" title="Documentation" href="documentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -136,14 +142,14 @@
                     </li>
                 
 
-                    <li class="nav-item">
+                    <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="documentation.html">
                         Documentation
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="tutorials.html">
                         Tutorials
                       </a>
@@ -222,14 +228,14 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
+                    <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="documentation.html">
                         Documentation
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="tutorials.html">
                         Tutorials
                       </a>
@@ -266,10 +272,28 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="induction.html">Searching for Induction Heads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="patching.html">Patching</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Features</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="features/adhoc.html">Ad-Hoc Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features/crossprompt.html">Cross Prompt intervention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features/multitoken.html">Multiple Token Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features/pertoken.html">Per Token Indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="contexts.html">Contexts</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="contexts/forward.html">forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contexts/generate.html">generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contexts/invoke.html">invoke</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="models.html">Models</a><input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="models/lm.html">nnsight.LanguageModel</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="toolbox.html">Toolbox</a><input checked class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolbox/lora.html">LORA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
 </ul>
 </div>
 </nav></div>
@@ -308,7 +332,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="documentation.html" class="nav-link">Documentation</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">Features</li>
   </ul>
@@ -329,6 +353,14 @@ document.write(`
                   
   <section id="features">
 <h1>Features<a class="headerlink" href="#features" title="Permalink to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features/adhoc.html">Ad-Hoc Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features/crossprompt.html">Cross Prompt intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features/multitoken.html">Multiple Token Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features/pertoken.html">Per Token Indexing</a></li>
+</ul>
+</div>
 </section>
 
 
@@ -343,13 +375,22 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="patching.html"
+       href="documentation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Patching</p>
+        <p class="prev-next-title">Documentation</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="features/adhoc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ad-Hoc Module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   

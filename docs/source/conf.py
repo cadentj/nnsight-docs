@@ -25,6 +25,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx_charts.charts',
     'sphinx_copybutton',
+    'jupyter_sphinx'
 ]
 
 templates_path = ['_templates']

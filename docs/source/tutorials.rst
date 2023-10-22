@@ -5,9 +5,7 @@ Several of these tutorials are adapted from `Neel Nanda's <https://www.neelnanda
 
 
 .. toctree::
+   :glob:
    :maxdepth: 1
 
-   basics
-   induction
-   patching
-   features
+   tutorials/*
