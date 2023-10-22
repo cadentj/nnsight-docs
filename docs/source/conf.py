@@ -50,7 +50,9 @@ html_theme_options = {
   "logo": {"text":"nnsight"},
   "show_nav_level": 2,
   "navbar_end": ["navbar-icon-links"],
+  "search_bar_text": "Your text here...",
 }
+
 
 html_context = {
    "default_mode": "light"
