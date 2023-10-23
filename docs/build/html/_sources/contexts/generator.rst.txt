@@ -24,37 +24,38 @@ The generation context creates a graph of operations which are carried out on th
     :type server: bool
     :param kwargs: Keyword arguments for calling the model.
 
-    .. py:method:: __enter__() -> Generator
+    .. py:function:: __enter__() -> Generator
 
         Prepares the generator for a model generation session.
 
-    .. py:method:: __exit__(exc_type, exc_val, exc_tb) -> None
+    .. py:function:: __exit__(exc_type, exc_val, exc_tb) -> None
 
         Cleans up after a model generation session, running the model either locally or on a server.
 
-    .. py:method:: run_local()
+    .. py:function:: run_local()
 
         Runs the model locally and stores the output.
 
-    .. py:method:: run_server()
+    .. py:function:: run_server()
 
         Prepares and sends a request to a server to run the model.
 
-    .. py:method:: blocking_request(request: pydantics.RequestModel)
+    .. py:function:: blocking_request(request: pydantics.RequestModel)
 
         Sends a blocking request to a server to run the model, waiting for a response.
 
-    .. py:method:: non_blocking_request(request: pydantics.RequestModel)
+    .. py:function:: non_blocking_request(request: pydantics.RequestModel)
 
         Sends a non-blocking request to a server to run the model.
 
-    .. py:method:: invoke(input, *args, **kwargs) -> Invoker
+    .. py:function:: invoke(input, *args, **kwargs) -> Invoker
+        :noindex:
 
         Creates and returns an Invoker object for a model generation invocation.
 
 
 Examples
-""""""""
+--------
 
 .. code-block:: python
 

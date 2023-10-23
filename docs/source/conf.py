@@ -25,7 +25,8 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx_charts.charts',
     'sphinx_copybutton',
-    'jupyter_sphinx'
+    'jupyter_sphinx',
+    'sphinx_design',
 ]
 
 templates_path = ['_templates']
@@ -41,11 +42,12 @@ html_theme = "pydata_sphinx_theme"
 
 html_static_path = ['_static']
 
-html_sidebars = {
-    "**": ["search-field.html", "sidebar-nav-bs"]
-}
+# html_sidebars = {
+#     "**": ["search-field.html", "sidebar-nav-bs"]
+# }
 
-# html_logo = "_static/images/stars.png"
+# html_logo = "_static/images/final.png"
+# html_logo = "_static/images/edited_dalle.png"
 
 html_theme_options = {
   "logo": {"text":"nnsight"},

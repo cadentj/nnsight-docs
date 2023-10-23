@@ -13,9 +13,3 @@ nnsight.utils.cross_entropy_loss
 
     :returns: A tensor containing the averaged loss if avg_batch is True, otherwise a tensor containing the loss for each item in the batch.
     :rtype: torch.Tensor
-
-.. note:: The logits and target_ids tensors are moved to CPU before calculation. Ensure they are on the same device before calling this function to avoid unnecessary data transfers.
-
-.. warning:: Ensure that the logits tensor has the same batch and sequence length as the target_ids tensor. Misalignment between these tensors will result in an AssertionError.
-
-.. attention:: The shift parameter is useful for scenarios like language modeling where the model predicts the next token based on the previous tokens. It aligns the input logits and target ids for such use-cases. If you're not handling sequences or don't need this specific alignment, you might want to keep shift as False.

@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
@@ -52,6 +53,7 @@
     <script src="_static/thebelab-helper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -200,7 +202,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -246,26 +248,6 @@ document.write(`
     
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<form class="bd-search d-flex align-items-center"
-      action="search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Your text here..."
-         aria-label="Your text here..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -315,21 +297,17 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolbox/lora.html#LORA.__call__">__call__() (LORA method)</a>
 </li>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.__enter__">__enter__() (nnsight.contexts.Generator method)</a>
+      <li><a href="contexts/invoker.html#nnsight.contexts.Invoker.__enter__">__enter__() (nnsight.contexts.Invoker method)</a>
 
       <ul>
-        <li><a href="contexts/invoker.html#nnsight.contexts.Invoker.__enter__">(nnsight.contexts.Invoker method)</a>
-</li>
         <li><a href="contexts/runner.html#Runner.__enter__">(Runner method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.__exit__">__exit__() (nnsight.contexts.Generator method)</a>
+      <li><a href="contexts/invoker.html#nnsight.contexts.Invoker.__exit__">__exit__() (nnsight.contexts.Invoker method)</a>
 
       <ul>
-        <li><a href="contexts/invoker.html#nnsight.contexts.Invoker.__exit__">(nnsight.contexts.Invoker method)</a>
-</li>
         <li><a href="contexts/runner.html#Runner.__exit__">(Runner method)</a>
 </li>
       </ul></li>
@@ -349,13 +327,23 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="contexts/runner.html#Runner.batch_size">batch_size (Runner attribute)</a>
 </li>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.blocking_request">blocking_request() (nnsight.contexts.Generator method)</a>
-</li>
       <li>
     built-in function
 
       <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.__enter__">nnsight.contexts.Generator.__enter__()</a>
+</li>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.__exit__">nnsight.contexts.Generator.__exit__()</a>
+</li>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.blocking_request">nnsight.contexts.Generator.blocking_request()</a>
+</li>
         <li><a href="contexts/invoker.html#nnsight.contexts.Generator.invoke">nnsight.contexts.Generator.invoke()</a>
+</li>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.non_blocking_request">nnsight.contexts.Generator.non_blocking_request()</a>
+</li>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_local">nnsight.contexts.Generator.run_local()</a>
+</li>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_server">nnsight.contexts.Generator.run_server()</a>
 </li>
         <li><a href="contexts/generator.html#nnsight.model.AbstractModel.generate">nnsight.model.AbstractModel.generate()</a>
 </li>
@@ -384,13 +372,11 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="contexts/runner.html#Runner.inference">inference (Runner attribute)</a>
 </li>
-      <li><a href="models/lm.html#init">init()</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contexts/runner.html#Runner.input">input (Runner attribute)</a>
+      <li><a href="models/lm.html#init">init()</a>
 </li>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.invoke">invoke() (nnsight.contexts.Generator method)</a>
+      <li><a href="contexts/runner.html#Runner.input">input (Runner attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -435,10 +421,54 @@ document.write(`
       <li><a href="contexts/generator.html#nnsight.contexts.Generator">nnsight.contexts.Generator (built-in class)</a>
 </li>
       <li>
+    nnsight.contexts.Generator.__enter__()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.__enter__">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.Generator.__exit__()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.__exit__">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.Generator.blocking_request()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.blocking_request">built-in function</a>
+</li>
+      </ul></li>
+      <li>
     nnsight.contexts.Generator.invoke()
 
       <ul>
         <li><a href="contexts/invoker.html#nnsight.contexts.Generator.invoke">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.Generator.non_blocking_request()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.non_blocking_request">built-in function</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    nnsight.contexts.Generator.run_local()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_local">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.Generator.run_server()
+
+      <ul>
+        <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_server">built-in function</a>
 </li>
       </ul></li>
       <li><a href="contexts/invoker.html#nnsight.contexts.Invoker">nnsight.contexts.Invoker (built-in class)</a>
@@ -450,8 +480,6 @@ document.write(`
         <li><a href="contexts/generator.html#nnsight.model.AbstractModel.generate">built-in function</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     nnsight.models.AbstractModel.forward()
 
@@ -466,8 +494,6 @@ document.write(`
         <li><a href="utils/crossentropy.html#nnsight.utils.cross_entropy_loss">built-in function</a>
 </li>
       </ul></li>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.non_blocking_request">non_blocking_request() (nnsight.contexts.Generator method)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -496,12 +522,8 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolbox/lora.html#LORA.r">r (LORA attribute)</a>
 </li>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_local">run_local() (nnsight.contexts.Generator method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contexts/generator.html#nnsight.contexts.Generator.run_server">run_server() (nnsight.contexts.Generator method)</a>
-</li>
       <li><a href="contexts/runner.html#Runner">Runner (built-in class)</a>
 </li>
   </ul></td>

@@ -71,8 +71,8 @@ Operations within a forward context interact with the model's forward pass.
 
         Cleans up after a model execution session and runs the model with the provided inputs and arguments.
 
-Usage Example
--------------
+Examples
+--------
 
 .. code-block:: python
 

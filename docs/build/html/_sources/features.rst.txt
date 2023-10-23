@@ -1,7 +1,6 @@
 Features
 ========
 
-
 .. toctree::
    :glob:
    :maxdepth: 1
