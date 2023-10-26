@@ -1,5 +1,5 @@
 nnsight.models
-------------
+--------------
 
 
 .. automodule:: nnsight.models

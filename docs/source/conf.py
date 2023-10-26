@@ -1,8 +1,5 @@
 # Configuration file for the Sphinx documentation builder.
 
-import sys
-sys.path.insert(0,'/home/caden/Programming/engine-docs')
-
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
@@ -41,13 +38,6 @@ html_theme = "pydata_sphinx_theme"
 
 
 html_static_path = ['_static']
-
-# html_sidebars = {
-#     "**": ["search-field.html", "sidebar-nav-bs"]
-# }
-
-# html_logo = "_static/images/final.png"
-# html_logo = "_static/images/edited_dalle.png"
 
 html_theme_options = {
   "logo": {"text":"nnsight"},
