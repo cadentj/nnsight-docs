@@ -2,10 +2,11 @@ Documentation
 =============
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
-   models
-   contexts
-   toolbox
-   utils
-   features
+   documentation/models
+   documentation/Module
+   documentation/util
+   documentation/intervention
+   documentation/tracing
+   documentation/patching
