@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Patching &#8212; nnsight 0.1 documentation</title>
   
@@ -30,10 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx_charts/charts.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -46,19 +43,15 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
-    <script src="../_static/sphinx_charts/plotly/plotly-2.11.1.min.js"></script>
-    <script src="../_static/sphinx_charts/charts.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/thebelab-helper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/patching';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Searching for Induction Heads" href="induction.html" />
+    <link rel="prev" title="NDIF Main Demo Notebook" href="main_demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -262,6 +255,10 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="induction.html">Searching for Induction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_demo.html">NDIF Main Demo Notebook</a></li>
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Patching</a></li>
 </ul>
 </div>
@@ -323,7 +320,7 @@ document.write(`
   <section id="patching">
 <h1>Patching<a class="headerlink" href="#patching" title="Permalink to this heading">#</a></h1>
 <p>Let’s apply <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx">activation patching</a> on the <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=iWsV3s5Kdd2ca3zNgXr5UPHa">Indirect Object Identification</a> (IOI) task.</p>
-<p>The IOI task is the task of identifying that a sentence like “After John and Mary went to the store, Mary gave a bottle of milk to” continues with “ John” rather than “ Mary” (ie, finding the indirect object), and Redwood Research have <a class="reference external" href="https://arxiv.org/abs/2211.00593">an excellent paper studying the underlying circuit in GPT-2 Small</a>.</p>
+<p>The IOI task is the task of identifying that a sentence like “After John and Mary went to the store, Mary gave a bottle of milk to” continues with ” John” rather than ” Mary” (ie, finding the indirect object), and Redwood Research have <a class="reference external" href="https://arxiv.org/abs/2211.00593">an excellent paper studying the underlying circuit in GPT-2 Small</a>.</p>
 <p><a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=qeWBvs-R-taFfcCq-S_hgMqx">Activation patching</a> is a technique from <a class="reference external" href="https://rome.baulab.info/">Kevin Meng and David Bau’s excellent ROME paper</a>. The goal is to identify which model activations are important for completing a task. We do this by setting up a <strong>clean prompt</strong> and a <strong>corrupted prompt</strong> and a <strong>metric</strong> for performance on the task. We then pick a specific model activation, run the model on the corrupted prompt, but then <em>intervene</em> on that activation and patch in its value when run on the clean prompt. We then apply the metric, and see how much this patch has recovered the clean performance.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clean_prompt</span> <span class="o">=</span> \
 <span class="s2">&quot;After John and Mary went to the store, Mary gave a bottle of milk to&quot;</span>
@@ -406,15 +403,6 @@ document.write(`
 <span class="n">temp_plot</span> <span class="o">=</span> <span class="n">imshow</span><span class="p">(</span><span class="n">patched_results</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">token_labels</span><span class="p">,</span> <span class="n">xaxis</span><span class="o">=</span><span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="n">yaxis</span><span class="o">=</span><span class="s2">&quot;Layer&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normalized Logit Difference After Patching Residual Stream on the IOI Task&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphinx-charts docutils container" id="id2">
-<div class="sphinx-charts-chart sphinx-charts-chart-id-0 sphinx-charts-chart-uri-../_charts/charts/chart_schema.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-0">
-</div>
-<p class="sphinx-charts-hidden"></p>
-<div class="sphinx-charts-placeholder sphinx-charts-placeholder-0 docutils container" id="id3">
-<p><span class="caption-text">Loading…</span></p>
-</div>
-<p><span class="caption-text">Loss by position on random repeated tokens</span></p>
-</div>
 </section>
 
 
@@ -429,12 +417,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="induction.html"
+       href="main_demo.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Searching for Induction Heads</p>
+        <p class="prev-next-title">NDIF Main Demo Notebook</p>
       </div>
     </a>
 </div></div>

@@ -29,10 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_charts/charts.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,15 +42,10 @@
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
-    <script src="_static/sphinx_charts/plotly/plotly-2.11.1.min.js"></script>
-    <script src="_static/sphinx_charts/charts.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/thebelab-helper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -276,7 +268,8 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
@@ -296,6 +289,14 @@ document.write(`
  | <a href="#W"><strong>W</strong></a>
  
 </div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node._proxy_device">_proxy_device (in module nnsight.fx.Node.Node)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -303,13 +304,19 @@ document.write(`
 </li>
       <li><a href="documentation/patching.html#nnsight.patching.Patcher.add">add() (nnsight.patching.Patcher method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.alter">alter (nnsight.models.AbstractModel.AbstractModel attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/util.html#nnsight.util.apply">apply() (in module nnsight.util)</a>
 </li>
-      <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.args">args (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.args">args (in module nnsight.fx.Node.Node)</a>
+
+      <ul>
+        <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.args">(nnsight.models.AbstractModel.AbstractModel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.argument_node_names">argument_node_names (in module nnsight.fx.Graph.Graph)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -329,6 +336,8 @@ document.write(`
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.dependencies">dependencies (in module nnsight.fx.Node.Node)</a>
+</li>
       <li><a href="documentation/models.html#nnsight.models.DiffuserModel.Diffuser">Diffuser (class in nnsight.models.DiffuserModel)</a>
 </li>
   </ul></td>
@@ -360,6 +369,12 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.generate">generate() (nnsight.models.AbstractModel.AbstractModel method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.generation_idx">generation_idx (in module nnsight.fx.Graph.Graph)</a>
+</li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.graph">graph (in module nnsight.fx.Node.Node)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -399,8 +414,12 @@ document.write(`
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.kwargs">kwargs (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.kwargs">kwargs (in module nnsight.fx.Node.Node)</a>
+
+      <ul>
+        <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.kwargs">(nnsight.models.AbstractModel.AbstractModel attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -411,6 +430,8 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.listeners">listeners (in module nnsight.fx.Node.Node)</a>
+</li>
       <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.local_model">local_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
 </li>
   </ul></td>
@@ -419,6 +440,8 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.meta">meta (in module nnsight.fx.Node.Node)</a>
+</li>
       <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.meta_model">meta_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
 </li>
       <li><a href="documentation/intervention.html#nnsight.intervention.HookModel.model">model (nnsight.intervention.HookModel attribute)</a>
@@ -427,6 +450,14 @@ document.write(`
     module
 
       <ul>
+        <li><a href="documentation/tracing.html#module-nnsight.fx">nnsight.fx</a>
+</li>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Graph.Graph">nnsight.fx.Graph.Graph</a>
+</li>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Node.Node">nnsight.fx.Node.Node</a>
+</li>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Proxy.Proxy">nnsight.fx.Proxy.Proxy</a>
+</li>
         <li><a href="documentation/intervention.html#module-nnsight.intervention">nnsight.intervention</a>
 </li>
         <li><a href="documentation/models.html#module-nnsight.models">nnsight.models</a>
@@ -450,6 +481,8 @@ document.write(`
 </li>
       <li><a href="documentation/Module.html#nnsight.Module.Module.module_path">module_path (nnsight.Module.Module attribute)</a>
 </li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.module_proxy">module_proxy (in module nnsight.fx.Graph.Graph)</a>
+</li>
       <li><a href="documentation/intervention.html#nnsight.intervention.HookModel.modules">modules (nnsight.intervention.HookModel attribute)</a>
 </li>
       <li><a href="documentation/models.html#nnsight.models.AbstractModel.AbstractModel.modulize">modulize() (nnsight.models.AbstractModel.AbstractModel method)</a>
@@ -460,6 +493,38 @@ document.write(`
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.name">name (in module nnsight.fx.Node.Node)</a>
+</li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.name_idx">name_idx (in module nnsight.fx.Graph.Graph)</a>
+</li>
+      <li>
+    nnsight.fx
+
+      <ul>
+        <li><a href="documentation/tracing.html#module-nnsight.fx">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.fx.Graph.Graph
+
+      <ul>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Graph.Graph">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.fx.Node.Node
+
+      <ul>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Node.Node">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.fx.Proxy.Proxy
+
+      <ul>
+        <li><a href="documentation/tracing.html#module-nnsight.fx.Proxy.Proxy">module</a>
+</li>
+      </ul></li>
       <li>
     nnsight.intervention
 
@@ -474,6 +539,8 @@ document.write(`
         <li><a href="documentation/models.html#module-nnsight.models">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     nnsight.models.AbstractModel
 
@@ -488,8 +555,6 @@ document.write(`
         <li><a href="documentation/models.html#module-nnsight.models.DiffuserModel">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     nnsight.models.LanguageModel
 
@@ -518,6 +583,10 @@ document.write(`
         <li><a href="documentation/util.html#module-nnsight.util">module</a>
 </li>
       </ul></li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Proxy.Proxy.node">node (in module nnsight.fx.Proxy.Proxy)</a>
+</li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.nodes">nodes (in module nnsight.fx.Graph.Graph)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -550,11 +619,15 @@ document.write(`
 </li>
       <li><a href="documentation/patching.html#nnsight.patching.Patch.patch">patch() (nnsight.patching.Patch method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/patching.html#nnsight.patching.Patcher">Patcher (class in nnsight.patching)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/patching.html#nnsight.patching.Patcher.patches">patches (nnsight.patching.Patcher attribute)</a>
+</li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Graph.Graph.proxy_class">proxy_class (in module nnsight.fx.Graph.Graph)</a>
+</li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.proxy_value">proxy_value (in module nnsight.fx.Node.Node)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -590,6 +663,8 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/intervention.html#nnsight.intervention.InterventionProxy.t">t (nnsight.intervention.InterventionProxy property)</a>
 </li>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.target">target (in module nnsight.fx.Node.Node)</a>
+</li>
       <li><a href="documentation/util.html#nnsight.util.timed">timed() (in module nnsight.util)</a>
 </li>
       <li><a href="documentation/models.html#nnsight.models.DiffuserModel.DiffuserModel.to_image">to_image() (nnsight.models.DiffuserModel.DiffuserModel method)</a>
@@ -610,8 +685,12 @@ document.write(`
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="documentation/intervention.html#nnsight.intervention.InterventionProxy.value">value (nnsight.intervention.InterventionProxy property)</a>
+      <li><a href="documentation/tracing.html#nnsight.fx.Node.Node.value">value (in module nnsight.fx.Node.Node)</a>
+
+      <ul>
+        <li><a href="documentation/intervention.html#nnsight.intervention.InterventionProxy.value">(nnsight.intervention.InterventionProxy property)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

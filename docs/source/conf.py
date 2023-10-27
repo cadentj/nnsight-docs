@@ -20,10 +20,9 @@ fixed_sidebar=True
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx_charts.charts',
     'sphinx_copybutton',
-    'jupyter_sphinx',
     'sphinx_design',
+    'nbsphinx',
 ]
 
 templates_path = ['_templates']

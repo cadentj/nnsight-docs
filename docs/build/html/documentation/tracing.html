@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>nnsight.tracing &#8212; nnsight 0.1 documentation</title>
   
@@ -31,8 +31,6 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,13 +43,12 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/thebelab-helper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/tracing';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="nnsight.patching" href="patching.html" />
@@ -320,8 +317,210 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="nnsight-tracing">
-<h1>nnsight.tracing<a class="headerlink" href="#nnsight-tracing" title="Permalink to this heading">#</a></h1>
+  <section id="module-nnsight.fx">
+<span id="nnsight-tracing"></span><h1>nnsight.tracing<a class="headerlink" href="#module-nnsight.fx" title="Permalink to this heading">#</a></h1>
+<span class="target" id="module-nnsight.fx.Graph.Graph"></span><p>Represents a computation graph involving a Module</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.proxy_class">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">proxy_class</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.proxy_class" title="Permalink to this definition">#</a></dt>
+<dd><p>Proxy class to use. Defaults to Proxy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type[Proxy]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.nodes">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">nodes</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.nodes" title="Permalink to this definition">#</a></dt>
+<dd><p>Mapping of node name to node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Node]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.name_idx">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">name_idx</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.name_idx" title="Permalink to this definition">#</a></dt>
+<dd><p>Mapping of node target_name to number of previous names with the same target_name.
+Used so names are unique.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.module_proxy">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">module_proxy</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.module_proxy" title="Permalink to this definition">#</a></dt>
+<dd><p>Proxy for given root module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Proxy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.argument_node_names">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">argument_node_names</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.argument_node_names" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Graph.Graph.generation_idx">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Graph.Graph.</span></span><span class="sig-name descname"><span class="pre">generation_idx</span></span><a class="headerlink" href="#nnsight.fx.Graph.Graph.generation_idx" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-nnsight.fx.Node.Node"></span><p>_summary_</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.name">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.name" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.graph">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.graph" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.proxy_value">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">proxy_value</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.proxy_value" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.target">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.target" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[Callable, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.args">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.args" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_. Defaults to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Any], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.kwargs">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.kwargs" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_. Defaults to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.meta">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.meta" title="Permalink to this definition">#</a></dt>
+<dd><p>_description_. Defaults to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.listeners">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">listeners</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.listeners" title="Permalink to this definition">#</a></dt>
+<dd><p>desc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Node]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.dependencies">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">dependencies</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.dependencies" title="Permalink to this definition">#</a></dt>
+<dd><p>desc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Node]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node.value">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#nnsight.fx.Node.Node.value" title="Permalink to this definition">#</a></dt>
+<dd><p>desc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Node.Node._proxy_device">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Node.Node.</span></span><span class="sig-name descname"><span class="pre">_proxy_device</span></span><a class="headerlink" href="#nnsight.fx.Node.Node._proxy_device" title="Permalink to this definition">#</a></dt>
+<dd><p>desc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.device</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-nnsight.fx.Proxy.Proxy"></span><p>_summary_</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.fx.Proxy.Proxy.node">
+<span class="sig-prename descclassname"><span class="pre">nnsight.fx.Proxy.Proxy.</span></span><span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#nnsight.fx.Proxy.Proxy.node" title="Permalink to this definition">#</a></dt>
+<dd><p>desc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -364,6 +563,33 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.proxy_class"><code class="docutils literal notranslate"><span class="pre">proxy_class</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.nodes"><code class="docutils literal notranslate"><span class="pre">nodes</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.name_idx"><code class="docutils literal notranslate"><span class="pre">name_idx</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.module_proxy"><code class="docutils literal notranslate"><span class="pre">module_proxy</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.argument_node_names"><code class="docutils literal notranslate"><span class="pre">argument_node_names</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Graph.Graph.generation_idx"><code class="docutils literal notranslate"><span class="pre">generation_idx</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.name"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.graph"><code class="docutils literal notranslate"><span class="pre">graph</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.proxy_value"><code class="docutils literal notranslate"><span class="pre">proxy_value</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.target"><code class="docutils literal notranslate"><span class="pre">target</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.args"><code class="docutils literal notranslate"><span class="pre">args</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.kwargs"><code class="docutils literal notranslate"><span class="pre">kwargs</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.meta"><code class="docutils literal notranslate"><span class="pre">meta</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.listeners"><code class="docutils literal notranslate"><span class="pre">listeners</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.dependencies"><code class="docutils literal notranslate"><span class="pre">dependencies</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node.value"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Node.Node._proxy_device"><code class="docutils literal notranslate"><span class="pre">_proxy_device</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.fx.Proxy.Proxy.node"><code class="docutils literal notranslate"><span class="pre">node</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

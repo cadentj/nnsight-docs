@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tutorials &#8212; nnsight 0.1 documentation</title>
   
@@ -31,8 +31,6 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,16 +43,14 @@
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/thebelab-helper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Basics" href="tutorials/basics.html" />
+    <link rel="next" title="Main Demo" href="tutorials/main_demo.html" />
     <link rel="prev" title="nnsight.patching" href="documentation/patching.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -257,9 +253,10 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/induction.html">Searching for Induction Heads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/patching.html">Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/main_demo.html">Main Demo</a></li>
+
+
+
 </ul>
 </div>
 </nav></div>
@@ -319,9 +316,10 @@ document.write(`
 <p>Several of these tutorials are adapted from <a class="reference external" href="https://www.neelnanda.io/">Neel Nanda’s</a> original TransformerLens demos.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/induction.html">Searching for Induction Heads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/patching.html">Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/main_demo.html">Main Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/main_demo.html#Loading-and-Running-Models">Loading and Running Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/main_demo.html#Example:-Logit-Lens">Example: Logit Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/main_demo.html#Intervening-during-a-forward-pass">Intervening during a forward pass</a></li>
 </ul>
 </div>
 </section>
@@ -347,11 +345,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="tutorials/basics.html"
+       href="tutorials/main_demo.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basics</p>
+        <p class="prev-next-title">Main Demo</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,4 +8,4 @@ Several of these tutorials are adapted from `Neel Nanda's <https://www.neelnanda
    :glob:
    :maxdepth: 1
 
-   tutorials/*
+   tutorials/main_demo.ipynb

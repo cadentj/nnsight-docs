@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Searching for Induction Heads &#8212; nnsight 0.1 documentation</title>
   
@@ -30,10 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx_charts/charts.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -46,19 +43,15 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
-    <script src="../_static/sphinx_charts/plotly/plotly-2.11.1.min.js"></script>
-    <script src="../_static/sphinx_charts/charts.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/thebelab-helper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/induction';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Patching" href="patching.html" />
+    <link rel="next" title="NDIF Main Demo Notebook" href="main_demo.html" />
     <link rel="prev" title="Basics" href="basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -263,6 +256,10 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Searching for Induction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_demo.html">NDIF Main Demo Notebook</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="patching.html">Patching</a></li>
 </ul>
 </div>
@@ -325,7 +322,7 @@ document.write(`
 <h1>Searching for Induction Heads<a class="headerlink" href="#searching-for-induction-heads" title="Permalink to this heading">#</a></h1>
 <p>Let’s look for <a class="reference external" href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">induction heads</a> in GPT-2 Small.</p>
 <p>Induction circuits are a very important circuit in generative language models, which are used to detect and continue repeated subsequences. They consist of two heads in separate layers that compose together, a <strong>previous token head</strong> which always attends to the previous token, and an <strong>induction head</strong> which attends to the token <em>after</em> an earlier copy of the current token.</p>
-<p>To see why this is important, let’s say that the model is trying to predict the next token in a news article about Michael Jordan. The token “ Michael”, in general, could be followed by many surnames. But an induction head will look from that occurence of “ Michael” to the token after previous occurences of “ Michael”, ie “ Jordan” and can confidently predict that that will come next.</p>
+<p>To see why this is important, let’s say that the model is trying to predict the next token in a news article about Michael Jordan. The token ” Michael”, in general, could be followed by many surnames. But an induction head will look from that occurence of ” Michael” to the token after previous occurences of ” Michael”, ie ” Jordan” and can confidently predict that that will come next.</p>
 <p>An interesting fact about induction heads is that they generalise to arbitrary sequences of repeated tokens. We can see this by generating sequences of 50 random tokens, repeated twice, and plotting the average loss at predicting the next token, by position. We see that the model goes from terrible to very good at the halfway point.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare the model and load onto device</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span><span class="n">device_map</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
@@ -344,15 +341,6 @@ document.write(`
 <span class="n">line</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">xaxis</span><span class="o">=</span><span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="n">yaxis</span><span class="o">=</span><span class="s2">&quot;Loss&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Loss by position on random repeated tokens&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphinx-charts docutils container" id="id1">
-<div class="sphinx-charts-chart sphinx-charts-chart-id-0 sphinx-charts-chart-uri-../_charts/charts/line.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-0">
-</div>
-<p class="sphinx-charts-hidden"></p>
-<div class="sphinx-charts-placeholder sphinx-charts-placeholder-0 docutils container" id="id2">
-<p><span class="caption-text">Loading…</span></p>
-</div>
-<p><span class="caption-text">Loss by position on random repeated tokens</span></p>
-</div>
 <p>The induction heads will be attending from the second occurence of each token to the token <em>after</em> its first occurence, ie the token <code class="docutils literal notranslate"><span class="pre">50-1==49</span></code> places back. So by looking at the average attention paid 49 tokens back, we can identify induction heads!</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_attentions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
 
@@ -365,15 +353,6 @@ document.write(`
 
 <span class="n">imshow</span><span class="p">(</span><span class="n">induction_score</span><span class="p">,</span> <span class="n">xaxis</span><span class="o">=</span><span class="s2">&quot;Head&quot;</span><span class="p">,</span> <span class="n">yaxis</span><span class="o">=</span><span class="s2">&quot;Layer&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Induction Score by Head&quot;</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="sphinx-charts docutils container" id="id3">
-<div class="sphinx-charts-chart sphinx-charts-chart-id-1 sphinx-charts-chart-uri-../_charts/charts/induction.json sphinx-charts-chart-dn-chart docutils container" id="sphinx-charts-chart-id-1">
-</div>
-<p class="sphinx-charts-hidden"></p>
-<div class="sphinx-charts-placeholder sphinx-charts-placeholder-1 docutils container" id="id4">
-<p><span class="caption-text">Loading…</span></p>
-</div>
-<p><span class="caption-text">Induction Score by Head</span></p>
 </div>
 </section>
 
@@ -398,11 +377,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="patching.html"
+       href="main_demo.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Patching</p>
+        <p class="prev-next-title">NDIF Main Demo Notebook</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

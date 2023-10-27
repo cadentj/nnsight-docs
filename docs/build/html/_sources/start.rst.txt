@@ -28,9 +28,9 @@ First Steps
       Check out the :doc:`tutorials <tutorials>` section for some examples on how to get started with nnsight.
 
     .. grid-item-card:: Colab
-      :link: https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing
+      :link: https://colab.research.google.com/drive/1ASP4LlRqSTuNxdhyJzjaZ-6h2NXpP3uK?usp=drive_link
 
-      If you'd like a more hands on experience, this `Colab <https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing>`_ covers some basic features and applied examples of the package.
+      If you'd like a more hands on experience, this `Colab <https://colab.research.google.com/drive/1ASP4LlRqSTuNxdhyJzjaZ-6h2NXpP3uK?usp=drive_link>`_ covers some basic features and applied examples of the package.
 
 .. grid:: 2
     :gutter: 2
