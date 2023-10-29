@@ -6,9 +6,9 @@
 nnsight documentation
 =====================
 
-**nnsight** (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of deep learning models.
+**nnsight** (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of large models.
 
-**Useful Links:** :ref:`installation` \| :doc:`Tutorials </tutorials/main_demo>` \| `Colab <https://colab.research.google.com/drive/1ASP4LlRqSTuNxdhyJzjaZ-6h2NXpP3uK?usp=drive_link>`_
+**Useful Links:** :doc:`Get Started <start>` \| :ref:`installation` \| :doc:`Tutorials </tutorials/main_demo>` \| `Colab <https://colab.research.google.com/drive/1ASP4LlRqSTuNxdhyJzjaZ-6h2NXpP3uK?usp=drive_link>`_
 
 .. grid:: 2
     :gutter: 2
@@ -46,10 +46,11 @@ nnsight documentation
       
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :hidden:
 
    start
    documentation
    tutorials
+   tutorials/nnsight_exercises.ipynb
 
