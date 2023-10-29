@@ -52,5 +52,3 @@ nnsight documentation
    start
    documentation
    tutorials
-   tutorials/nnsight_exercises.ipynb
-
