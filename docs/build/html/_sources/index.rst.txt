@@ -72,7 +72,7 @@ nnsight documentation
 
         .. div:: 
 
-          **Interpretability**
+          **Integration**
 
           Access the internals of your model, including the hidden states, attention weights, and more.
 
