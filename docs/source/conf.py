@@ -46,6 +46,13 @@ html_theme_options = {
   "show_nav_level": 2,
   "navbar_end": ["navbar-icon-links"],
   "search_bar_text": "Your text here...",
+  "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/JadenFiotto-Kaufman/nnsight",
+            "icon": "fa-brands fa-github",
+        },
+  ]
 }
 
 html_context = {

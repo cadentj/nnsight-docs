@@ -1,13 +1,14 @@
 .test {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+    gap: 10px;
 }
 
-.temp {
+.front-container {
     height: 90vh;
     display: flex;
     flex-direction: row;
@@ -16,6 +17,10 @@
     align-items: center;
     align-content: stretch;
 
+}
+
+.temp {
+    margin-top: -100px;
 }
 
 

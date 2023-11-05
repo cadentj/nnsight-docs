@@ -13,11 +13,18 @@ nnsight documentation
    tutorials
 
 .. grid:: 1 1 2 2
-    :class-container: temp
+    :class-container: front-container
+    :reverse:
 
     .. grid-item:: 
+        .. div:: temp
 
-        .. div:: sd-fs-1 sd-font-weight-bold title-bot
+          .. image:: _static/images/nnsight.png
+            
+    .. grid-item:: 
+        
+
+        .. div:: sd-fs-1 sd-font-weight-bold title-bot sd-text-primary
 
             nnsight
 
@@ -27,54 +34,42 @@ nnsight documentation
 
         **nnsight** (/ɛn.saɪt/) is a package for the interpreting and manipulating the internals of large models.
 
-        .. grid:: 3
-          :gutter: 0
-
-          .. grid-item::
-
-            .. button-link:: https://example.com
+        .. div:: test
+        
+          .. button-ref:: start
               :color: primary
               :shadow:
 
-                Start
-          .. grid-item::
+                  Get Started
 
-            .. button-link:: https://example.com
-              :color: primary
-              :outline:
-          
-                Tutorials          
-          .. grid-item::
+          .. button-ref:: tutorials
+            :color: primary
+            :outline:
+            
+                Tutorials
 
-            .. button-link:: https://example.com
-              :color: primary
-              :shadow:
-
-                documentation
+          .. button-ref:: documentation
+            :color: primary
+            :outline:
+            
+                Documentation
 
 
-    .. grid-item:: 
-
-        B
+    
 
 
-.. div:: sd-fs-1 sd-font-weight-bold 
+.. div:: sd-fs-1 sd-font-weight-bold sd-text-center sd-text-primary
 
   Key Features
 
 .. grid:: 1 1 2 2
     :gutter: 1
 
-    .. grid-item-card:: Integration
+    .. grid-item-card:: Interpretability
       :shadow: none
-      :class-card: sd-border-0 key-card-body
-      
-      .. image:: _static/images/stars.png
-        :width: 100
+      :class-card: sd-border-0 sd-d-flex-column
 
-      .. div:: key-features-text
-
-        Reference any transformer model from the HuggingFace transformer library to use with nnsight.
+        Access the internals of your model, including the hidden states, attention weights, and more.
 
     .. grid-item-card:: Interpretability
       :shadow: none
