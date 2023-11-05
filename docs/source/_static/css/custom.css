@@ -1,0 +1,40 @@
+.test {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+}
+
+.temp {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+
+}
+
+
+.title-bot {
+    margin-bottom: -10px !important;
+    line-height: normal !important;
+}
+
+.sub-bot {
+    margin-bottom: -10px !important;
+    /* margin-top: -20px !important; */
+    line-height: normal !important;
+}
+
+.key-features-text {
+    min-width: 70%;
+    padding: 20px 10px;
+}
+
+.key-card-body {
+    display: flex;
+}
