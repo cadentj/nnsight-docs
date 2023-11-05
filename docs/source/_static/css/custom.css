@@ -19,6 +19,11 @@
 
 }
 
+.container { 
+    height: 65vh;
+}
+
+
 .temp {
     margin-top: -100px;
 }
@@ -35,11 +40,7 @@
     line-height: normal !important;
 }
 
-.key-features-text {
-    min-width: 70%;
-    padding: 20px 10px;
-}
-
-.key-card-body {
+.features-container {
     display: flex;
+    gap: 20px;
 }

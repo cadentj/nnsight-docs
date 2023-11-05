@@ -55,25 +55,63 @@ nnsight documentation
                 Documentation
 
 
-    
-
-
-.. div:: sd-fs-1 sd-font-weight-bold sd-text-center sd-text-primary
+.. div:: sd-fs-1 sd-font-weight-bold sd-text-center sd-text-primary sd-mb-5
 
   Key Features
 
 .. grid:: 1 1 2 2
-    :gutter: 1
+    :gutter: 5
+    :class-container: container
 
-    .. grid-item-card:: Interpretability
-      :shadow: none
-      :class-card: sd-border-0 sd-d-flex-column
+    .. grid-item::
 
-        Access the internals of your model, including the hidden states, attention weights, and more.
+      .. div:: features-container
 
-    .. grid-item-card:: Interpretability
-      :shadow: none
-      :class-card: sd-border-0 sd-d-flex-column
+        .. image:: _static/images/1.png
+          :width: 250
 
-        Access the internals of your model, including the hidden states, attention weights, and more.
+        .. div:: 
+
+          **Interpretability**
+
+          Access the internals of your model, including the hidden states, attention weights, and more.
+
+    .. grid-item::
+
+      .. div:: features-container
+
+        .. image:: _static/images/2.png
+          :width: 250
+
+        .. div:: 
+
+          **Interpretability**
+
+          Access the internals of your model, including the hidden states, attention weights, and more.
+    
+    .. grid-item::
+
+      .. div:: features-container
+
+        .. image:: _static/images/2.png
+          :width: 250
+
+        .. div:: 
+
+          **Interpretability**
+
+          Access the internals of your model, including the hidden states, attention weights, and more.
+
+    .. grid-item::
+
+      .. div:: features-container
+
+        .. image:: _static/images/1.png
+          :width: 250
+
+        .. div:: 
+
+          **Interpretability**
+
+          Access the internals of your model, inclding the hidden states, attention weights, and more.
 
